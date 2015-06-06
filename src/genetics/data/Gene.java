@@ -2,7 +2,6 @@ package genetics.data;
 
 public class Gene {
     
-    // vertex constructor in its location
     public Gene(int ID){
         id = ID;
     } 

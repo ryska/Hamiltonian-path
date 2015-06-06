@@ -153,10 +153,13 @@ public class Graf extends JFrame {
             }
             System.out.println("Dlugosci krawędzi: ");
             Iterator<Way> it = ways.iterator();
+            float sum=0;
             while (it.hasNext()){
                 Way way = it.next();
+                sum+=way.getLength();
                 System.out.println("Id: "+way.getIdWay()+" dlugosc: "+way.getLength());
             }
+            System.out.println(" suma: " + sum);
             Graph<Node,Way> graf_pelny = new UndirectedSparseGraph<Node, Way>();
 
             int h=0;

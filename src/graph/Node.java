@@ -1,5 +1,3 @@
-package graph;
-
 public class Node {
        private int idNode;
 
