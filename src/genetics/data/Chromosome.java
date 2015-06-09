@@ -3,9 +3,12 @@ package genetics.data;
 import java.util.LinkedList;
 
 
-// pojedynczy osobnik
+/**
+ * Klasa, której obiekt reprezentuje pojedynczego osobnika populacji. Składa się z listy genów.
+ * @author Adrianna
+ */
 public class Chromosome {
-    // list of all genes
+
     protected LinkedList genes;
     protected float adaptation = 0;
     protected Gene gene;

@@ -14,7 +14,7 @@ public class StopChecker {
     Chromosome bestCheckedChromosome;
     
     /**
-     * 
+     * Konstruktor klasy.
      * @param noIterations Number of interations / liczba iteracji.
      */
     public StopChecker(int noIterations){

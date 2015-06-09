@@ -52,6 +52,7 @@ public class PopulationGenerator {
                 permutation.add(randomElement);
             }
         }
+        
         return permutation;
     }
     

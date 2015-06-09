@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package genetics.algorithm;
 
 import genetics.data.Chromosome;
@@ -14,7 +9,7 @@ import java.util.TreeSet;
 
 
 /**
- *
+ * Klasa odpowiedzialna za krzyżowanie osobników w populacji.
  * @author Adrianna
  */
 public class Crosser {
@@ -25,7 +20,7 @@ public class Crosser {
      * @param population krzyżowana populacja
      * @return populacja po krzyżowaniu
      */
-    public double crossProbability = 0.3; // ? 
+    
     public LinkedList<Chromosome> cross(Chromosome ch1, Chromosome ch2){
         
         LinkedList<Gene> parent1 = ch1.getGenes();
@@ -34,7 +29,9 @@ public class Crosser {
         LinkedList<Gene> child1 = new LinkedList<>();
         LinkedList<Gene> child2 = new LinkedList<>();
         
-        // robię dzieci : 
+        /**
+         * robię dzieci : 
+        **/
         child1.addAll(getFirstHalf(ch1));
         child1.addAll(getSecondHalf(ch2));
         
@@ -58,6 +55,12 @@ public class Crosser {
         return returnList;
     }
     
+    /**
+     * Funkcja pobierająca pierwszą połowę genów z chromosomu-rodzica.
+     * @param parent Chromosom, z którego pobieramy pierwszą połowę genów, jeśli liczba jest nieparzysta to zaokrąglamy w górę.
+     * @return Pierwsza połowa genów.
+     */
+    
     protected LinkedList<Gene> getFirstHalf(Chromosome parent){
         LinkedList<Gene> p = parent.getGenes();
         LinkedList<Gene> half = new LinkedList();
@@ -66,12 +69,19 @@ public class Crosser {
         
         Iterator<Gene> itr = p.iterator();
         int zp=0;
-        while (itr.hasNext() && zp < partitionSize) {  // pobieram geny od rodzica i wrzucam do listy "połowa"
+        while (itr.hasNext() && zp < partitionSize) { 
                 half.add(itr.next());
                 zp++;
         }
         return half;
     }
+    
+    /**
+     * Funkcja pobierająca drugą połowę genów od chromosomu-rodzica.
+     * @param parent Chromosom, z którego pobieramy drugą połowę genów, lub resztę jeśli ich liczba jest nieparzysta.
+     * @return Druga połowa genów.
+     */
+    
     protected LinkedList<Gene> getSecondHalf(Chromosome parent){
         LinkedList<Gene> secHalf = new LinkedList(parent.getGenes());
         LinkedList<Gene> fstHalf = getFirstHalf(parent);

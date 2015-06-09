@@ -9,24 +9,19 @@ import java.util.LinkedList;
 
 public class Main {
 
-//    public static void main(String[] args) throws IOException {
-//        System.out.println("Wpisz liczbe wierzcholkow: ");
-//        Scanner input = new Scanner(System.in);
-//        int countNode = input.nextInt();
-//        System.out.println("Wybrales " + countNode + " wierzcholkow. Brawo!");
-//
-//        System.out.println("Jaki graf (pelny/niepelny) ?");
-//        Scanner input1 = new Scanner(System.in);
-//        String type = input1.nextLine();
-//        System.out.println("Wybrales graf " + type);
-//
-//        MGraph mgraph = new MGraph(countNode, type);
-//    }
+    /**
+     * Musisz sobie Maja to połączyć z GUI, zrobić maina u siebie z tego co wiem, ale nie orientuję się jak to działa. 
+     * Komentarze na dole są do twojej informacji, skasuj je jak zrobisz żeby było estetycznie :)
+     * @param args
+     * @throws IOException 
+     */
+    
     public static void main(String args[]) throws IOException {
-        MGraph mgraph = new MGraph(14, "pelny");
-        Algorithm algorithm = new Algorithm(100, 40, (float) 0.7);
-        LinkedList<Node> result = algorithm.findCycle(mgraph.getGraph());
-        printPath(mgraph.getGraph(), result);
+        MGraph mgraph = new MGraph(14, "pelny"); // tworzę obiekt MGraph i ustawiam mu parametry : ilość wierzchołków i typ pełny/niepełny
+        Algorithm algorithm = new Algorithm(100, 40, (float) 0.7); // obiekt typu algorytm, podaję mu: 
+        //rozmiar populacji, ilość iteracji po skończeniu których algorytm ma przestać się wykonywać, prawdopodobieństwo mutacji. Zrzutowane na float bo Asia robiła na doubleach a ja floatach.
+        LinkedList<Node> result = algorithm.findCycle(mgraph.getGraph()); // linked lista result- do niej pakujemy najelpszy cykl jaki znalazł algorytm.
+        printPath(mgraph.getGraph(), result); // wypisuje scieżkę.
     }
 
     public static void printPath(Graph g, LinkedList<Node> path) {

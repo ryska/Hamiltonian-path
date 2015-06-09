@@ -17,21 +17,34 @@ public class Mutator {
      * @return Populacja po mutowaniu.
      */
     protected double prob;
+    
+    /**
+     * Konstruktor klasy.
+     * @param mutationProb Parametr okreslający prawdopodobieńtwo mutacji osobnika.  
+     */
 
     public Mutator(double mutationProb) {
         prob = mutationProb;
     }
 
     public Random random = new Random();
+    
+    /**
+     * Funkcja odpowiedzialna za mutowanie osobników. 
+     * @param population Populacja, której osobniki mutujemy.
+     * @return Listę population ze zmutowanymi osobnikami.
+     */
 
     public Population mutate(Population population) {
         List chromosomes = population.getChromosomes();
         int popSize = population.getChromosomes().size();
 
-        // przeiterować przez populacje i zmutować każdy chromosom z zadanym prawdopod. Jako param w konstruktorze. jak mniejsza to mutuje. 
+        /**
+         * iteruję przez populacje i mutuję każdy chromosom z zadanym prawdopodopodobieństwem.
+         */
         Iterator<Chromosome> itr = chromosomes.iterator();
         while (itr.hasNext()) {
-            if (random.nextDouble() < prob) { // nextDouble() zwraca losową liczbę od 0 do 1
+            if (random.nextDouble() < prob) { 
                 Chromosome ch = itr.next();
                 int chromSize = ch.getGenes().size(); // ilosc genow w chromosomie
                 int random1 = random.nextInt(chromSize - 1); //losuje geny do zmutowania   

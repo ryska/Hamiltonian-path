@@ -26,7 +26,6 @@ public class AdaptationCalculator {
                 ((Way) edge).setWeight("0");
             }
             sum += Float.parseFloat(((Way) edge).getWeight());   // suma wag sciezek calego grafu
-            
         }
     }
 
@@ -38,8 +37,6 @@ public class AdaptationCalculator {
      * @return
      */
     public void calculate(Chromosome chromosome) {
-        //chromosome.setAdaptation(1); // jak to zaimplementować?
-        //suma wag sciezek wygenerowanego cyklu
         LinkedList<Node> nodes = ng.generate(graph, chromosome);
         int nodesSize = nodes.size();
         float weight = 0;

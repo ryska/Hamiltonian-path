@@ -6,7 +6,19 @@ import genetics.data.Gene;
 import graph.Node;
 import java.util.LinkedList;
 
+/**
+ * Klasa odpowiedzialna za generowanie Node'ów z Chromosomów.
+ * @author Adrianna
+ */
+
 public class NodeGenerator {
+    
+    /**
+     * Funkcja generująca obiekty Node z obiektów Chromosom.
+     * @param graph Wygenerowany graf, na którego elementach działamy.
+     * @param chromosome Chromosom, z którego tworzymy Node.
+     * @return Lista Node'ów.
+     */
     
     public LinkedList<Node> generate(Graph graph, Chromosome chromosome){
       LinkedList<Node> nodeList = new LinkedList<>();
@@ -19,7 +31,7 @@ public class NodeGenerator {
               }
           }
       }        
-        return nodeList; // zwracam liste node'ow
+        return nodeList; 
     }
     
 }
