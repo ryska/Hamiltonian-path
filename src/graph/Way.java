@@ -1,9 +1,16 @@
-public class Way {
-    private int idWay;
+package graph;
 
-    Way(){idWay = 0;}
-    Way(int id){idWay = id; }
-    public int getIdWay() {return idWay;}
-    public void setIdWay(int id) {idWay = id;}
+import java.io.Serializable;
+
+public class Way  implements Serializable{
+    private int idWay;
+    private String weightWay;
+
+    Way(){this.idWay = 0;}
+    Way(int idWay){this.idWay = idWay; }
+    public int getIdWay() {return this.idWay;}
+    public void setIdWay(int idWay) {this.idWay = idWay;}
+    public String getWeight() {return this.weightWay;}
+    public void setWeight(String weightWay) {this.weightWay = weightWay; }
 
 }

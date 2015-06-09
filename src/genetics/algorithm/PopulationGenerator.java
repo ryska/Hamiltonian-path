@@ -1,6 +1,6 @@
 package genetics.algorithm;
 
-import edu.uci.ics.jung.graph.UndirectedSparseGraph;
+import edu.uci.ics.jung.graph.Graph;
 import genetics.data.Chromosome;
 import genetics.data.Gene;
 import genetics.data.Population;
@@ -17,11 +17,11 @@ public class PopulationGenerator {
      * @param graph
      * @return populacja
      */
-    public Population generate(UndirectedSparseGraph graph, int generationSize) {
+    public Population generate(Graph graph, int generationSize) {
         /**
          * Zbiór wszystkich wierzchołków
          */
-        ArrayList vertices = (ArrayList) graph.getVertices();
+        ArrayList vertices = new ArrayList(graph.getVertices());
         Population population = new Population();
         Chromosome chromosome;
         

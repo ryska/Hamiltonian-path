@@ -3,44 +3,45 @@ package genetics.algorithm;
 import genetics.data.Chromosome;
 import genetics.data.Gene;
 import genetics.data.Population;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 
 public class Mutator {
 
     /**
-     * Mutuje osobniki z podanej populacji z uwzględnieniem prawdopodobieństwa 
+     * Mutuje osobniki z podanej populacji z uwzględnieniem prawdopodobieństwa
      * mutacji.
+     *
      * @param population Populacja do mutowania.
      * @return Populacja po mutowaniu.
      */
-    
+    protected double prob;
+
+    public Mutator(double mutationProb) {
+        prob = mutationProb;
+    }
+
     public Random random = new Random();
-    
-    public Population mutate(Population population){
-        //List chromosomes = population.getChromosomes();
+
+    public Population mutate(Population population) {
+        List chromosomes = population.getChromosomes();
+        int popSize = population.getChromosomes().size();
+
         // przeiterować przez populacje i zmutować każdy chromosom z zadanym prawdopod. Jako param w konstruktorze. jak mniejsza to mutuje. 
-        int popSize = population.getChromosomes().size(); 
+        Iterator<Chromosome> itr = chromosomes.iterator();
+        while (itr.hasNext()) {
+            if (random.nextDouble() < prob) { // nextDouble() zwraca losową liczbę od 0 do 1
+                Chromosome ch = itr.next();
+                int chromSize = ch.getGenes().size(); // ilosc genow w chromosomie
+                int random1 = random.nextInt(chromSize - 1); //losuje geny do zmutowania   
+                int random2 = random.nextInt(chromSize - 1);
+                Gene tmp = ch.getGene(random1); // zamieniam miejscami
+                ch.insertGene(random1, ch.getGene(random2));
+                ch.insertGene(random2, tmp);
+            }
+        }
         
-         //pobieram randomowy chromosom z populacji do zmutowania 
-        int rand = random.nextInt(popSize);       
-        Chromosome randomChromosome = population.getChromosomes().get(rand);
-        
-        int chromSize = randomChromosome.getGenes().size(); // liczba genow w chromosomie
-       
-        //losuje geny do zmutowania 
-        int random1 = random.nextInt(chromSize-1);
-        int random2 = random.nextInt(chromSize-1);
-
-//        Gene mutateMe1 = (Gene)randomChromosome.getGenes().get(random1);
-//        Gene mutateMe2 = (Gene)randomChromosome.getGenes().get(random2);
-        
-        
-        //zamieniam
-        Gene tmp = randomChromosome.getGene(random1);
-        randomChromosome.insertGene(random1, randomChromosome.getGene(random2));
-        randomChromosome.insertGene(random2, tmp);
-
-        // ????
         return population;
     }
 }

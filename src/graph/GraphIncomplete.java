@@ -1,3 +1,5 @@
+package graph;
+
 import edu.uci.ics.jung.algorithms.importance.AbstractRanker;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.graph.Graph;
@@ -11,10 +13,10 @@ import java.util.Random;
 
 public class GraphIncomplete extends JFrame {
 
-    GraphIncomplete(){}
+    GraphIncomplete(){};
 
     public GraphIncomplete(Graph<Node, Way> g) {
-        super("Graf");
+        super("GraphIncomplete");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         VisualizationViewer<Node,Way> vv = new VisualizationViewer<Node, Way>(new FRLayout<Node, Way>(g));
         new Dimension(300,200);

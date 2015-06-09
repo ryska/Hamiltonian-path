@@ -1,3 +1,5 @@
+package graph;
+
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.UndirectedSparseGraph;
@@ -11,10 +13,10 @@ import java.util.Random;
 
 public class GraphComplete extends JFrame {
 
-    GraphComplete(){}
+    GraphComplete(){};
 
     public GraphComplete(Graph<Node, Way> g) {
-        super("Graf");
+        super("GraphComplete");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         VisualizationViewer<Node,Way> vv = new VisualizationViewer<Node, Way>(new FRLayout<Node, Way>(g));
         new Dimension(300,200);

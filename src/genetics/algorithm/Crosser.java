@@ -5,11 +5,13 @@
  */
 package genetics.algorithm;
 
-import edu.uci.ics.jung.graph.event.GraphEvent.Vertex;
 import genetics.data.Chromosome;
 import genetics.data.Gene;
 import genetics.data.Population;
 import java.util.LinkedList;
+import java.util.Iterator;
+import java.util.TreeSet;
+
 
 /**
  *
@@ -24,25 +26,56 @@ public class Crosser {
      * @return populacja po krzyżowaniu
      */
     public double crossProbability = 0.3; // ? 
-    public Population cross(Chromosome ch1, Chromosome ch2){
+    public LinkedList<Chromosome> cross(Chromosome ch1, Chromosome ch2){
         
-        LinkedList<Vertex> parent1 = ch1.getGenes();
-        LinkedList<Vertex> parent2 = ch2.getGenes();
+        LinkedList<Gene> parent1 = ch1.getGenes();
+        LinkedList<Gene> parent2 = ch2.getGenes();
         
-        LinkedList<Vertex> child1 = new LinkedList<>(parent1);
-        LinkedList<Vertex> child2 = new LinkedList<>(parent2);
+        LinkedList<Gene> child1 = new LinkedList<>();
+        LinkedList<Gene> child2 = new LinkedList<>();
         
+        // robię dzieci : 
+        child1.addAll(getFirstHalf(ch1));
+        child1.addAll(getSecondHalf(ch2));
         
+        child2.addAll(getFirstHalf(ch2));
+        child2.addAll(getSecondHalf(ch1));
         
+        Chromosome c1 = new Chromosome(child1);
+        Chromosome c2 = new Chromosome(child2);
+        LinkedList<Gene> g = c1.getGenes();
+        TreeSet<Gene> set = new TreeSet<>(g);
         
-        
-        return population;
+        LinkedList<Chromosome> returnList = new LinkedList<>();
+        if(g.size()==set.size()){
+            returnList.add(c1);
+            returnList.add(c2);
+        } else {
+            returnList.add(ch1);
+            returnList.add(ch2);
+        }
+
+        return returnList;
     }
     
-    protected boolean isEven(LinkedList<Gene> genes){
-        if((genes.size() % 2)==0){
-            return true;
-        }else {return false;}
+    protected LinkedList<Gene> getFirstHalf(Chromosome parent){
+        LinkedList<Gene> p = parent.getGenes();
+        LinkedList<Gene> half = new LinkedList();
+        int parentSize = parent.getGenes().size();
+        int partitionSize = (int)Math.ceil(parentSize/2);
+        
+        Iterator<Gene> itr = p.iterator();
+        int zp=0;
+        while (itr.hasNext() && zp < partitionSize) {  // pobieram geny od rodzica i wrzucam do listy "połowa"
+                half.add(itr.next());
+                zp++;
+        }
+        return half;
     }
-    
+    protected LinkedList<Gene> getSecondHalf(Chromosome parent){
+        LinkedList<Gene> secHalf = new LinkedList(parent.getGenes());
+        LinkedList<Gene> fstHalf = getFirstHalf(parent);
+        secHalf.removeAll(fstHalf);
+        return secHalf;
+    }
 }

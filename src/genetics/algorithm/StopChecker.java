@@ -9,8 +9,9 @@ import genetics.data.Population;
  */
 public class StopChecker {
     protected int checkedPopulations = 0;
-    protected float bestChecked = 0;
+    protected float bestChecked = -1;
     protected int stopAfter;
+    Chromosome bestCheckedChromosome;
     
     /**
      * 
@@ -31,6 +32,7 @@ public class StopChecker {
             chromosomeAdaptation = chromosome.getAdaptation();
             if(chromosomeAdaptation> bestChecked){
                 bestChecked = chromosomeAdaptation;
+                bestCheckedChromosome = chromosome;
                 checkedPopulations = 0;
             }
         }
@@ -40,6 +42,14 @@ public class StopChecker {
         checkedPopulations++;
             
         return false;
+    }
+    
+    /**
+     * Pobiera najlepiej przystosowany chromosom.
+     * @return Najlepiej przystosowany chromosom lub null.
+     */
+    public Chromosome getBest(){
+        return bestCheckedChromosome;
     }
     
 }

@@ -1,9 +1,13 @@
-public class Node {
+package graph;
+
+import java.io.Serializable;
+
+public class Node implements Serializable {
        private int idNode;
 
-    Node() {idNode = 0; }
-    Node(int id){idNode = id;}
-    public int getIdNode() {return idNode;}
-    public void setIdNode(int id) {idNode = id;}
-
+    Node() {this.idNode = 0; }
+    Node(int idNode){this.idNode = idNode;}
+    public int getIdNode() {return this.idNode;}
+    public void setIdNode(int idNode) {this.idNode = idNode;}
+    
 }
